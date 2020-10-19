@@ -5,6 +5,7 @@
 body {
   font-family: "Indie Flower", cursive;
   background-color: #f2ed6f;
+  margin-bottom: 350px;
 }
 
 header {
@@ -19,6 +20,13 @@ h1 {
   font-size: 40px;
 }
 
+#attempt-counter {
+  font-size: 25px;
+  font-weight: bold;
+  border: 3px ridge #587792;
+  /* width: 200px; */
+}
+
 #image-div {
   display: grid;
   justify-content: center;
@@ -31,5 +39,11 @@ img {
   width: 220px;
   height: 200px;
   border-radius: 5px;
-  border: 5px solid #cee397;
+  background-color: #cee397;
+}
+
+img:hover {
+  background-color: #8db1ab;
+  transition: 0.3s;
+  cursor: pointer;
 }
