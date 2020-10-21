@@ -1,4 +1,4 @@
-const clickedImg = document.querySelectorAll("img");
+// const clickedImg = document.querySelectorAll("img");
 
 const antPicOne = {
   img:
@@ -16,32 +16,44 @@ const antPicThree = {
   id: "three",
 };
 
-let questionMk =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1920px-Question_mark_%28black%29.svg.png";
-
+let questionMk = {
+  img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1920px-Question_mark_%28black%29.svg.png"};
+let clickedImg = document.querySelectorAll("img");
 let antPics = [antPicOne, antPicTwo, antPicThree];
 let attempts = 0;
 let numClicks = 0;
 let firstClick = [];
 let secondClick = [];
 
+cardReset = () => {
+        document.querySelectorAll("img").src = questionMk.img;
+      }
+
 clickedImg.forEach((img) => {
   img.addEventListener("click", () => {
-    const randomPicAndId = antPics[Math.floor(Math.random() * antPics.length)];
+    let randomPicAndId = antPics[Math.floor(Math.random() * antPics.length)];
     img.src = randomPicAndId.img;
     img.id = randomPicAndId.id;
     if (firstClick.length === 0) {
       firstClick.push(randomPicAndId.id);
     } else {
       secondClick.push(randomPicAndId.id);
-    }
-
-    if (firstClick[0] == secondClick[0]) {
-      alert("Match");
-    } else {
-      alert("Sorry, try again.");
-    }
+      if (firstClick[0] === secondClick[0]) {
+        antPics.splice(antPics.indexOf(randomPicAndId), 1)
+        firstClick.shift(randomPicAndId.id);
+        secondClick.shift(randomPicAndId.id);
+        alert("match");
+      } else {
+          alert("try again")
+          if (firstClick[0] != secondClick[0]) {
+            firstClick.shift(randomPicAndId.id);
+            secondClick.shift(randomPicAndId.id);
+            clickedImg.forEach(cardReset);
+          }
+        }
+      } 
     console.log(firstClick);
     console.log(secondClick);
+    console.log(antPics);
   });
 });
